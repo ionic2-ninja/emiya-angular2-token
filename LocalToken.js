@@ -1,6 +1,6 @@
 'use strict';
-var Utils_1 = require("emiya-utils/Utils");
-var Event_1 = require("angular2-emiya-event/Event");
+var emiya_js_utils_1 = require("emiya-js-utils");
+var emiya_angular2_event_1 = require("emiya-angular2-event");
 var LocalToken = (function () {
     function LocalToken() {
     }
@@ -289,6 +289,6 @@ var LocalToken = (function () {
     };
     return LocalToken;
 }());
-LocalToken.utils = Utils_1.Utils;
-LocalToken.$event = Event_1.Event;
+LocalToken.utils = emiya_js_utils_1.Utils;
+LocalToken.$event = emiya_angular2_event_1.Event;
 exports.LocalToken = LocalToken;

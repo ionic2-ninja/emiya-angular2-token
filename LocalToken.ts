@@ -1,6 +1,6 @@
 'use strict'
-import {Utils} from 'emiya-utils/Utils'
-import {Event} from 'angular2-emiya-event/Event'
+import {Utils} from 'emiya-js-utils'
+import {Event} from 'emiya-angular2-event'
 
 export class LocalToken {
 

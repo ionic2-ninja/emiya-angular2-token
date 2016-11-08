@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic2-ninja/emiya-angular2-token.git"
+    "url": "git+https://github.com/ionic2-ninja/angular2-emiya-token.git"
   },
   "keywords": [
     "angular2",
@@ -22,7 +22,7 @@
   "author": "emiyalee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ionic2-ninja/emiya-angular2-token/issues"
+    "url": "https://github.com/ionic2-ninja/angular2-emiya-token/issues"
   },
-  "homepage": "https://github.com/ionic2-ninja/emiya-angular2-token#readme"
+  "homepage": "https://github.com/ionic2-ninja/angular2-emiya-token#readme"
 }

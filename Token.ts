@@ -1,7 +1,7 @@
 'use strict'
 import {LocalToken} from './LocalToken'
-import {Utils} from 'emiya-utils/Utils'
-import {Event} from 'angular2-emiya-event/Event'
+import {Utils} from 'emiya-js-utils'
+import {Event} from 'emiya-angular2-event'
 import {SessionToken} from './SessionToken'
 
 const constants = {tokenStorageMethod: 'local'};
