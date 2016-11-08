@@ -1,10 +1,14 @@
 {
   "name": "emiya-angular2-token",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "an angular2 based token management toolkit",
   "main": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "emiya-js-utils": ">=1.0.0",
+    "emiya-angular2-event": ">=1.0.0"
   },
   "repository": {
     "type": "git",
