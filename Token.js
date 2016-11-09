@@ -7,11 +7,11 @@ var constants = { tokenStorageMethod: 'local' };
 var Token = (function () {
     function Token() {
     }
-    Token.set = function (key, token, expiry_time, can_refresh, disabled, method) {
+    Token.set = function (key, token, method, expiry_time, can_refresh, disabled) {
+        if (method === void 0) { method = null; }
         if (expiry_time === void 0) { expiry_time = null; }
         if (can_refresh === void 0) { can_refresh = null; }
         if (disabled === void 0) { disabled = null; }
-        if (method === void 0) { method = null; }
         if (!method)
             method = constants.tokenStorageMethod;
         if (method === 'local')
