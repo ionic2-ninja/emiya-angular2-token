@@ -1,6 +1,6 @@
 {
   "name": "emiya-angular2-token",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "an angular2 based token management toolkit",
   "main": "index.d.ts",
   "scripts": {
