@@ -110,8 +110,8 @@ export class SessionToken {
         //str = key + ":" + token + ":" + (can_refresh_flag == 1 ? new Date().getTime() : old.timestamp) + ":" + token_expiry_time + ":" + can_refresh_flag + ":" + (disabled == true ? '1' : '0');
         list[i] = str;
         window.sessionStorage['TokenMaps'] = list.join(',');
-        SessionToken.$event.emit('tokenChanged', {action: 'renew', location: 'local', new: SessionToken.getObj(key), old: old});
-        SessionToken.$event.emit('tokenChanged:renew', {location: 'local', new: SessionToken.getObj(key), old: old});
+        SessionToken.$event.emit('tokenChanged', {action: 'renew', location: 'session', new: SessionToken.getObj(key), old: old});
+        SessionToken.$event.emit('tokenChanged:renew', {location: 'session', new: SessionToken.getObj(key), old: old});
         return;
       }
     }
@@ -123,8 +123,8 @@ export class SessionToken {
     if (window.sessionStorage['TokenMaps'].substr(window.sessionStorage['TokenMaps'].length - 1) === ',')
       window.sessionStorage['TokenMaps'] = window.sessionStorage['TokenMaps'].substr(0, window.sessionStorage['TokenMaps'].length - 1);
 
-    SessionToken.$event.emit('tokenChanged', {action: 'add', location: 'local', new: SessionToken.getObj(key)});
-    SessionToken.$event.emit('tokenChanged:add', {location: 'local', new: SessionToken.getObj(key)});
+    SessionToken.$event.emit('tokenChanged', {action: 'add', location: 'session', new: SessionToken.getObj(key)});
+    SessionToken.$event.emit('tokenChanged:add', {location: 'session', new: SessionToken.getObj(key)});
   }
 
   public static updateTimestamp(key) {
@@ -214,15 +214,15 @@ export class SessionToken {
 
     window.sessionStorage['TokenMaps'] = result.substr(1);
     if (SessionToken.utils.notNullStrAndObj(target)) {
-      SessionToken.$event.emit('tokenChanged', {action: 'delete', location: 'local', target: target});
-      SessionToken.$event.emit('tokenChanged:delete', {location: 'local', target: target});
+      SessionToken.$event.emit('tokenChanged', {action: 'delete', location: 'session', target: target});
+      SessionToken.$event.emit('tokenChanged:delete', {location: 'session', target: target});
     }
   }
 
   public static clear() {
     delete window.sessionStorage['TokenMaps'];
-    SessionToken.$event.emit('tokenChanged', {action: 'clear', location: 'local'});
-    SessionToken.$event.emit('tokenChanged:clear', {location: 'local'});
+    SessionToken.$event.emit('tokenChanged', {action: 'clear', location: 'session'});
+    SessionToken.$event.emit('tokenChanged:clear', {location: 'session'});
   }
 
   public static disable(key) {
@@ -248,8 +248,8 @@ export class SessionToken {
         old = SessionToken.getObj(key);
       window.sessionStorage['TokenMaps'] = result.substr(1);
       if (flag) {
-        SessionToken.$event.emit('tokenChanged', {action: 'renew', location: 'local', new: SessionToken.getObj(key), old: old});
-        SessionToken.$event.emit('tokenChanged:renew', {location: 'local', new: SessionToken.getObj(key), old: old});
+        SessionToken.$event.emit('tokenChanged', {action: 'renew', location: 'session', new: SessionToken.getObj(key), old: old});
+        SessionToken.$event.emit('tokenChanged:renew', {location: 'session', new: SessionToken.getObj(key), old: old});
       }
     }
     else {
@@ -259,11 +259,11 @@ export class SessionToken {
         old.disabled = '1';
         SessionToken.$event.emit('tokenChanged', {
           action: 'renew',
-          location: 'local',
+          location: 'session',
           new: old,
           old: SessionToken.getObj(key)
         });
-        SessionToken.$event.emit('tokenChanged:renew', {location: 'local', new: old, old: SessionToken.getObj(key)});
+        SessionToken.$event.emit('tokenChanged:renew', {location: 'session', new: old, old: SessionToken.getObj(key)});
       }
       window.sessionStorage['TokenMaps'] = result.substr(1);
     }
@@ -291,8 +291,8 @@ export class SessionToken {
         old = SessionToken.getObj(key);
       window.sessionStorage['TokenMaps'] = result.substr(1);
       if (flag) {
-        SessionToken.$event.emit('tokenChanged', {action: 'renew', location: 'local', new: SessionToken.getObj(key), old: old});
-        SessionToken.$event.emit('tokenChanged:renew', {location: 'local', new: SessionToken.getObj(key), old: old});
+        SessionToken.$event.emit('tokenChanged', {action: 'renew', location: 'session', new: SessionToken.getObj(key), old: old});
+        SessionToken.$event.emit('tokenChanged:renew', {location: 'session', new: SessionToken.getObj(key), old: old});
       }
     }
     else {
@@ -302,11 +302,11 @@ export class SessionToken {
         old.disabled = '0';
         SessionToken.$event.emit('tokenChanged', {
           action: 'renew',
-          location: 'local',
+          location: 'session',
           new: old,
           old: SessionToken.getObj(key)
         });
-        SessionToken.$event.emit('tokenChanged:renew', {location: 'local', new: old, old: SessionToken.getObj(key)});
+        SessionToken.$event.emit('tokenChanged:renew', {location: 'session', new: old, old: SessionToken.getObj(key)});
       }
       window.sessionStorage['TokenMaps'] = result.substr(1);
     }
