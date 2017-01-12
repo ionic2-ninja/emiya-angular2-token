@@ -3,17 +3,23 @@ var LocalToken_1 = require("./LocalToken");
 var emiya_js_utils_1 = require("emiya-js-utils");
 var emiya_angular2_event_1 = require("emiya-angular2-event");
 var SessionToken_1 = require("./SessionToken");
-var constants = { tokenStorageMethod: 'local' };
+//const constants = {tokenStorageMethod: 'local'};
 var Token = (function () {
     function Token() {
     }
+    Token.getDefaultLocation = function () {
+        return this._defaultLocation;
+    };
+    Token.setDefaultLocation = function (value) {
+        this._defaultLocation = value;
+    };
     Token.set = function (key, token, method, expiry_time, can_refresh, disabled) {
         if (method === void 0) { method = null; }
         if (expiry_time === void 0) { expiry_time = null; }
         if (can_refresh === void 0) { can_refresh = null; }
         if (disabled === void 0) { disabled = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             Token.localToken.set(key, token, expiry_time, can_refresh, disabled);
         else
@@ -22,7 +28,7 @@ var Token = (function () {
     Token.updateTimestamp = function (key, method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             Token.localToken.updateTimestamp(key);
         else
@@ -31,7 +37,7 @@ var Token = (function () {
     Token.get = function (key, method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             return Token.localToken.get(key);
         else
@@ -43,14 +49,14 @@ var Token = (function () {
             return Token.hasAll(key, method);
         else {
             if (!method)
-                method = constants.tokenStorageMethod;
+                method = Token._defaultLocation;
             return method === 'local' ? Token.localToken.has(key) : Token.sessionToken.has(key);
         }
     };
     Token["delete"] = function (key, method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             Token.localToken["delete"](key);
         else
@@ -59,7 +65,7 @@ var Token = (function () {
     Token.clear = function (method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             Token.localToken.clear();
         else
@@ -73,7 +79,7 @@ var Token = (function () {
     Token.getObj = function (key, method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             return Token.localToken.getObj(key);
         else
@@ -82,7 +88,7 @@ var Token = (function () {
     Token.enable = function (key, method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             return Token.localToken.enable(key);
         else
@@ -91,7 +97,7 @@ var Token = (function () {
     Token.disable = function (key, method) {
         if (method === void 0) { method = null; }
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
         if (method === 'local')
             return Token.localToken.disable(key);
         else
@@ -100,7 +106,7 @@ var Token = (function () {
     Token.hasAll = function (key, location) {
         if (location === void 0) { location = null; }
         for (var c in key) {
-            if (Token.has(key[c], (location instanceof Array) && parseInt(c) < location.length ? location[c] : constants.tokenStorageMethod) == false) {
+            if (Token.has(key[c], (location instanceof Array) && parseInt(c) < location.length ? location[c] : Token._defaultLocation) == false) {
                 return false;
             }
         }
@@ -116,7 +122,7 @@ var Token = (function () {
         if (!(tokens instanceof Array))
             tokens = [tokens];
         if (!(method instanceof Array)) {
-            var _method = method ? method : constants.tokenStorageMethod;
+            var _method = method ? method : Token._defaultLocation;
             method = [];
             for (var c in tokens)
                 method.push(_method);
@@ -127,7 +133,7 @@ var Token = (function () {
             if (method && c < method.length)
                 d.method = method[c];
             else
-                d.method = constants.tokenStorageMethod;
+                d.method = Token._defaultLocation;
             status.push(d);
         }
         var lastStatus = Token.has(tokens, method);
@@ -224,4 +230,5 @@ Token.localToken = LocalToken_1.LocalToken;
 Token.sessionToken = SessionToken_1.SessionToken;
 Token.event = emiya_angular2_event_1.Event;
 Token.utils = emiya_js_utils_1.Utils;
+Token._defaultLocation = 'local';
 exports.Token = Token;

@@ -4,18 +4,27 @@ import {Utils} from 'emiya-js-utils'
 import {Event} from 'emiya-angular2-event'
 import {SessionToken} from './SessionToken'
 
-const constants = {tokenStorageMethod: 'local'};
+//const constants = {tokenStorageMethod: 'local'};
 
 export class Token {
+    public static getDefaultLocation(): string {
+        return this._defaultLocation;
+    }
+
+    public static setDefaultLocation(value: string) {
+        this._defaultLocation = value;
+    }
 
     private static localToken = LocalToken;
     private static sessionToken = SessionToken;
     private static event = Event;
     private static utils = Utils
 
+    private static _defaultLocation = 'local';
+
     public static set(key, token, method = null, expiry_time = null, can_refresh = null, disabled = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             Token.localToken.set(key, token, expiry_time, can_refresh, disabled);
@@ -25,7 +34,7 @@ export class Token {
 
     public static updateTimestamp(key, method = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             Token.localToken.updateTimestamp(key);
@@ -35,7 +44,7 @@ export class Token {
 
     public static get(key, method = null): any {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             return Token.localToken.get(key);
@@ -49,14 +58,14 @@ export class Token {
             return Token.hasAll(key, method)
         else {
             if (!method)
-                method = constants.tokenStorageMethod;
+                method = Token._defaultLocation;
             return method === 'local' ? Token.localToken.has(key) : Token.sessionToken.has(key);
         }
     }
 
     public static delete(key, method = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             Token.localToken.delete(key);
@@ -66,7 +75,7 @@ export class Token {
 
     public static clear(method = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             Token.localToken.clear()
@@ -83,7 +92,7 @@ export class Token {
 
     public static getObj(key, method = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             return Token.localToken.getObj(key);
@@ -93,7 +102,7 @@ export class Token {
 
     public static enable(key, method = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             return Token.localToken.enable(key);
@@ -103,7 +112,7 @@ export class Token {
 
     public static disable(key, method = null) {
         if (!method)
-            method = constants.tokenStorageMethod;
+            method = Token._defaultLocation;
 
         if (method === 'local')
             return Token.localToken.disable(key);
@@ -113,7 +122,7 @@ export class Token {
 
     public static hasAll(key, location = null) {
         for (var c in key) {
-            if (Token.has(key[c], (location instanceof Array) && parseInt(c) < location.length ? location[c] : constants.tokenStorageMethod) == false) {
+            if (Token.has(key[c], (location instanceof Array) && parseInt(c) < location.length ? location[c] : Token._defaultLocation) == false) {
                 return false;
             }
         }
@@ -127,7 +136,7 @@ export class Token {
             tokens = [tokens]
 
         if (!(method instanceof Array)) {
-            let _method = method ? method : constants.tokenStorageMethod;
+            let _method = method ? method : Token._defaultLocation;
             method = []
             for (let c in tokens)
                 method.push(_method)
@@ -139,7 +148,7 @@ export class Token {
             if (method && c < method.length)
                 d.method = method[c]
             else
-                d.method = constants.tokenStorageMethod
+                d.method = Token._defaultLocation
             status.push(d)
         }
 
@@ -166,7 +175,7 @@ export class Token {
         let removeL, addL, clearL
 
         if (onPass)
-            addL = Token.event.subscribe('tokenChanged:add', (ev, data)=> {
+            addL = Token.event.subscribe('tokenChanged:add', (ev, data) => {
 
                 for (let c in status) {
                     if (status[c].method == data.location && status[c].key == data.new.key) {
@@ -191,7 +200,7 @@ export class Token {
             })
 
         if (onDeny)
-            removeL = Token.event.subscribe('tokenChanged:delete', (ev, data)=> {
+            removeL = Token.event.subscribe('tokenChanged:delete', (ev, data) => {
                 for (let c in status) {
                     if (status[c].method == data.location && status[c].key == data.target.key) {
                         status[c].invalid = false
@@ -213,7 +222,7 @@ export class Token {
             })
 
         if (onDeny)
-            clearL = Token.event.subscribe('tokenChanged:clear', (ev, data)=> {
+            clearL = Token.event.subscribe('tokenChanged:clear', (ev, data) => {
                 for (let c in status) {
                     if (status[c].method == data.location)
                         status[c].invalid = false
@@ -235,7 +244,7 @@ export class Token {
 
 
         return {
-            unsubscribe: ()=> {
+            unsubscribe: () => {
                 if (addL)
                     addL.unsubscribe();
                 if (removeL)
