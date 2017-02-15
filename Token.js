@@ -1,4 +1,5 @@
 'use strict';
+exports.__esModule = true;
 var LocalToken_1 = require("./LocalToken");
 var emiya_js_utils_1 = require("emiya-js-utils");
 var emiya_angular2_event_1 = require("emiya-angular2-event");
@@ -232,3 +233,4 @@ Token.event = emiya_angular2_event_1.Event;
 Token.utils = emiya_js_utils_1.Utils;
 Token._defaultLocation = 'local';
 exports.Token = Token;
+//# sourceMappingURL=Token.js.map
