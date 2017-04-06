@@ -164,13 +164,16 @@ export class Token {
             onPass = _exchange
         }
 
-        if (lastStatus == true) {
-            if (onPass)
-                onPass(Token.utils.deepCopy(status));
-        } else {
-            if (onDeny)
-                onDeny(Token.utils.deepCopy(status));
-        }
+        setTimeout(() => {
+            if (lastStatus == true) {
+                if (onPass)
+                    onPass(Token.utils.deepCopy(status));
+            } else {
+                if (onDeny)
+                    onDeny(Token.utils.deepCopy(status));
+            }
+        })
+
 
         let removeL, addL, clearL
 

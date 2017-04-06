@@ -146,14 +146,16 @@ var Token = (function () {
             onDeny = onPass;
             onPass = _exchange;
         }
-        if (lastStatus == true) {
-            if (onPass)
-                onPass(Token.utils.deepCopy(status));
-        }
-        else {
-            if (onDeny)
-                onDeny(Token.utils.deepCopy(status));
-        }
+        setTimeout(function () {
+            if (lastStatus == true) {
+                if (onPass)
+                    onPass(Token.utils.deepCopy(status));
+            }
+            else {
+                if (onDeny)
+                    onDeny(Token.utils.deepCopy(status));
+            }
+        });
         var removeL, addL, clearL;
         if (onPass)
             addL = Token.event.subscribe('tokenChanged:add', function (ev, data) {
