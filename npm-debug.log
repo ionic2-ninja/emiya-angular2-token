@@ -1,0 +1,119 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.9
+3 info using node@v8.0.0-rc.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'D:\\DATA\\hs\\git\\emiya-angular2-token',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\Lee\AppData\Roaming\npm-cache\emiya-angular2-token\1.1.0\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\Lee\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle emiya-angular2-token@1.1.0~prepublish: emiya-angular2-token@1.1.0
+11 silly lifecycle emiya-angular2-token@1.1.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\Lee\\AppData\\Roaming\\npm-cache\\emiya-angular2-token\\1.1.0\\package.tgz',
+12 verbose tar pack   'D:\\DATA\\hs\\git\\emiya-angular2-token' ]
+13 verbose tarball C:\Users\Lee\AppData\Roaming\npm-cache\emiya-angular2-token\1.1.0\package.tgz
+14 verbose folder D:\DATA\hs\git\emiya-angular2-token
+15 verbose addLocalTarball adding from inside cache C:\Users\Lee\AppData\Roaming\npm-cache\emiya-angular2-token\1.1.0\package.tgz
+16 verbose correctMkdir C:\Users\Lee\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd emiya-angular2-token@1.1.0
+18 verbose afterAdd C:\Users\Lee\AppData\Roaming\npm-cache\emiya-angular2-token\1.1.0\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\Lee\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\Lee\AppData\Roaming\npm-cache\emiya-angular2-token\1.1.0\package\package.json written
+21 silly publish { name: 'emiya-angular2-token',
+21 silly publish   version: '1.1.0',
+21 silly publish   description: 'an angular2 based token management toolkit',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   dependencies:
+21 silly publish    { 'emiya-js-utils': '>=1.0.0',
+21 silly publish      'emiya-angular2-event': '>=1.0.0' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/ionic2-ninja/emiya-angular2-token.git' },
+21 silly publish   keywords:
+21 silly publish    [ 'angular2',
+21 silly publish      'ionic2',
+21 silly publish      'emiya',
+21 silly publish      'js',
+21 silly publish      'javascript',
+21 silly publish      'ecmascript6',
+21 silly publish      'token' ],
+21 silly publish   author: { name: 'emiyalee' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/ionic2-ninja/emiya-angular2-token/issues' },
+21 silly publish   homepage: 'https://github.com/ionic2-ninja/emiya-angular2-token#readme',
+21 silly publish   readme: '#Emiya Angular2 Token\r\n\r\n##How to install\r\n```\r\nnpm install --save emiya-angular2-token\r\n```\r\n\r\n\r\n## Usage\r\n\r\n```\r\nimport {Router} from \'emiya-angular2-token\';\r\n\r\nexport class TabsPage {\r\n\r\nconstructor() {\r\n    //set tokon\r\n    Token.set(\'uuid\',\'fasfasjfasjlk9312jkkfasjfaskl\',\'local\')  //set token to local/session storage\r\n    \r\n    //get token\r\n    Token.get(\'uuid\',\'local\')    //return local token \'fasfasjfasjlk9312jkkfasjfaskl\'\r\n    Token.getObj(\'uuid\',\'session\')  //return object which contain all info of token\r\n    \r\n    //delete token\r\n    Token.delete(\'uuid\',\'local\')\r\n    \r\n    //check if token exists\r\n    Token.has(\'uuid\',\'local\')   //true or false\r\n    Token.hasAll([\'uuid\',..],[\'local\',..]) //true or false\r\n    \r\n    //update the last read timestamp\r\n    Token.updateTimestamp(\'uuid\',\'local\')\r\n    \r\n    //delete all token\r\n    Token.clear(\'local\') //clear local token\r\n    Token.clearAll()  //include local and session token\r\n    \r\n    //enable/disable token\r\n    Token.enable(\'uuid\',\'local\')\r\n    Token.disable(\'uuid\',\'local\')\r\n    \r\n    \r\n    //subscribe to token event\r\n    let tokenevent=Token.subscribe(\'uuid\',\'local\',(data)=>{//call when \'uuid\' has been set},(data)=>{//call when \'uuid\' has been deleted},false/*default is false,whether to exchange the third and forth params*/)\r\n    \r\n    Token.subscribe([\'uuid\',\'userid\'],[\'session\',\'local\'],(data)=>{//call when \'uuid\' has been deleted},(data)=>{//call when \'uuid\' has been set},true)\r\n    \r\n    //unlisten to token event\r\n    tokenevent.unsubscribe()\r\n    \r\n  }\r\n}\r\n```\r\n\r\n##### it will use local by default if local/session is not defined\r\n\r\n### Api Referrences(todo..)\r\n\r\n\r\n',
+21 silly publish   readmeFilename: 'readme.md',
+21 silly publish   gitHead: '92126ca28b7be49cbda3c8546e5f25eb60629f4d',
+21 silly publish   _id: 'emiya-angular2-token@1.1.0',
+21 silly publish   _shasum: 'ffc03d068a832abb3d15128aaf27999786301e43',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name emiya-angular2-token
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'emiya-angular2-token',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'emiya-angular2-token',
+26 silly mapToRegistry   name: 'emiya-angular2-token',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/emiya-angular2-token
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading C:\Users\Lee\AppData\Roaming\npm-cache\emiya-angular2-token\1.1.0\package.tgz
+30 verbose request uri https://registry.npmjs.org/emiya-angular2-token
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 19:04:42
+33 verbose request using bearer token for auth
+34 verbose request id 224dc519b6d05c99
+35 http request PUT https://registry.npmjs.org/emiya-angular2-token
+36 http 403 https://registry.npmjs.org/emiya-angular2-token
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Thu, 06 Apr 2017 11:04:44 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-hkg6822-HKG',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1491476683.819359,VS0,VE691',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating C:\Users\Lee\AppData\Roaming\npm-cache\registry.npmjs.org\emiya-angular2-token on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 1.1.0." : emiya-angular2-token
+40 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:290:14)
+40 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+40 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+40 verbose stack     at emitOne (events.js:96:13)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+41 verbose statusCode 403
+42 verbose pkgid emiya-angular2-token
+43 verbose cwd D:\DATA\hs\git\emiya-angular2-token
+44 error Windows_NT 10.0.10586
+45 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+46 error node v8.0.0-rc.0
+47 error npm  v3.10.9
+48 error code E403
+49 error "You cannot publish over the previously published version 1.1.0." : emiya-angular2-token
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]

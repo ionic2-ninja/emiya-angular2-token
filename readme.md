@@ -9,7 +9,7 @@ npm install --save emiya-angular2-token
 ## Usage
 
 ```
-import {Router} from 'emiya-angular2-token';
+import {Token} from 'emiya-angular2-token';
 
 export class TabsPage {
 
